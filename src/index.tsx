@@ -1,6 +1,7 @@
 import {
   definePlugin,
   Field,
+  Navigation
   PanelSection,
   PanelSectionRow,
   ServerAPI,
@@ -48,7 +49,7 @@ function sendToast(serverAPI: ServerAPI) {
         body: entry["title"],
         duration: 5000,
         critical: true,
-        onClick: () => Router.NavigateToExternalWeb(`https://store.epicgames.com/en-US/p/${entry["productSlug"]}`)
+        onClick: () => Navigation.NavigateToExternalWeb(`https://store.epicgames.com/en-US/p/${entry["catalogNs"]["mappings"][0]['pageSlug']}`)
       });
 
       await sleep(6000);
@@ -77,7 +78,7 @@ const QuickAccessMenu: VFC<{ serverAPI: ServerAPI }> = ({ serverAPI }) => {
               <DialogLabel>{entry["description"]}</DialogLabel>
               <br/>
               <DialogButton
-                onClick={() => Router.NavigateToExternalWeb(`https://store.epicgames.com/en-US/p/${entry["productSlug"]}`) }
+                onClick={() => Navigation.NavigateToExternalWeb(`https://store.epicgames.com/en-US/p/${entry["catalogNs"]["mappings"][0]['pageSlug']}`) }
               >
                 Open Store Page
               </DialogButton>
